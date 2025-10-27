@@ -3,29 +3,19 @@ End-to-end antimicrobial peptide (AMP) discovery pipeline:
 1. Stage 1: Generate candidate peptide sequences using a conditional VAE + reinforcement learning.
 2. Stage 2: Filter sequences with an AMP ensemble (ProtBERT/ESM2 models) and label each sequence as AMP or not. 
 3. Stage 3: For AMP-positive sequences, assign 22 antimicrobial / functional attributes.
-4.  Environment / Requirements
+   
+Environment / Requirements
 - Python 3.8+
 - PyTorch with GPU support recommended
 - transformers (HuggingFace)
 - pandas, numpy, scikit-learn, tqdm
-- Trained weights:
+  
+Trained weights:
   • Stage 1 generative VAE + RL decoder
-  • amp_classifier.pt and mic_classifier_best.pt (used for RL reward shaping and scoring)  fileciteturn0file1
-  • Stage 2 ensemble weights (Model/Model_2ndstage/*)  fileciteturn0file0
-  • Stage 3 specialists and stacker models (Model/Model_3rdstage/*)  fileciteturn0file0
-2. Directory Layout
-Dataset/
-  1ststage/
-    unlabelled_positive.csv
-    unlabelled_negative.csv
-    mic_data.csv
-    Uniprot_0_25_train.csv
-    Uniprot_0_25_val.csv
-  2ndstage\
-  Train_data
-  Test_data
-  3rdstage\
-  multilabel_Traindata
+  • amp_classifier.pt and mic_classifier_best.pt (used for RL reward shaping and scoring)  
+  • Stage 2 ensemble weights (Model/Model_2ndstage/*)  
+  • Stage 3 specialists and stacker models (Model/Model_3rdstage/*)  
+	
 Model/
   Model_1ststage/
     VAE_ECD_RL_best.ckpt
@@ -43,10 +33,27 @@ Model/
     specialists/fold_1/scaler.pkl
     stacker_from_saved/fold_*/meta.pth
     labels.json (or label_cols.json)
+
+
+Dataset/
+  1ststage/
+    unlabelled_positive.csv
+    unlabelled_negative.csv
+    mic_data.csv
+    Uniprot_0_25_train.csv
+    Uniprot_0_25_val.csv
+  2ndstage\
+  Train_data
+  Test_data
+  3rdstage\
+  multilabel_Traindata
+
 Result_1ststage/           (Stage 1 output)
 Result_after_2ndstage/     (Stage 2 output)
 Final_Result/              (Stage 3 output)
-3. Stage 1 — Sequence Generation (AmpGEncode.py)  fileciteturn0file1
+
+
+Stage 1 — Sequence Generation (AmpGEncode.py) 
 Goal: generate antimicrobial-like peptide sequences using a VAE with encoder–conditioner–decoder (ECD) plus optional RL.
 - Encoder: biGRU → latent z
 - Conditioner (ECD): transforms z to encourage controllable attributes
@@ -64,7 +71,8 @@ Each CSV row includes:
 - mic_prob_low (predicted “low MIC”, i.e. potent)
 - length, charge at pH 7.4, hydrophobicity, hydrophobic moment, isoelectric point
 These CSVs are the inputs to Stage 2.
-4. Stage 2 — AMP Screening (amp_to_22func_pipeline.py, Stage-2)  
+
+Stage 2 — AMP Screening (amp_to_22func_pipeline.py, Stage-2)  
 Goal: decide which generated sequences are actually AMPs.
 Process:
 1. Load Result_1ststage/generated_denovo_ecd_ar.csv and generated_analogs_ecd_ar.csv
@@ -86,6 +94,9 @@ Additionally:
 - denovo_ensemble_counts.csv
 - analogs_ensemble_counts.csv
 These summarize how many sequences passed AMP filtering.
+
+
+
 5. Stage 3 — 22-Function Profiling (amp_to_22func_pipeline.py, Stage-3)  fileciteturn0file0
 Goal: For sequences predicted as AMPs (ensemble_amp == 1), assign 22 functional attributes (multi-label).
 Process:
