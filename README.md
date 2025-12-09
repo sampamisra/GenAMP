@@ -15,24 +15,28 @@ Trained weights:
   • amp_classifier.pt and mic_classifier_best.pt (used for RL reward shaping and scoring)  
   • Stage 2 ensemble weights (Model/Model_2ndstage/*)  
   • Stage 3 specialists and stacker models (Model/Model_3rdstage/*)  
+
+Model can be downloaed from https://drive.google.com/drive/folders/1hdwsKo8oxES_GdoURBQh6_0IVAsN0s9I?usp=sharing
+
+
 	
 Model/
   Model_1ststage/
-    VAE_ECD_RL_best.ckpt
-    VAE_ECD_RL_encoder.pt
-    VAE_ECD_RL_decoder.pt
-    amp_classifier.pt
-    mic_classifier_best.pt
+    VAE_ECD_RL_best.ckpt/
+    VAE_ECD_RL_encoder.pt/
+    VAE_ECD_RL_decoder.pt/
+    amp_classifier.pt/
+    mic_classifier_best.pt/
   Model_2ndstage/
-    best_Bert_cnn_bilstm_attn_fold6.pth
-    best_esm2_cnn_bilstm_attn_fold6.pth
-    cv_protbert_cnn_bilstm_attn_FT_fold6.pth
-    cv_esm2_cnn_bilstm_attn_FT_HP_fold6.pth
+    best_Bert_cnn_bilstm_attn_fold6.pth/
+    best_esm2_cnn_bilstm_attn_fold6.pth/
+    cv_protbert_cnn_bilstm_attn_FT_fold6.pth/
+    cv_esm2_cnn_bilstm_attn_FT_HP_fold6.pth/
   Model_3rdstage/
-    specialists/fold_1/*.pth
-    specialists/fold_1/scaler.pkl
-    stacker_from_saved/fold_*/meta.pth
-    labels.json (or label_cols.json)
+    specialists/fold_1/*.pth/
+    specialists/fold_1/scaler.pkl/
+    stacker_from_saved/fold_*/meta.pth/
+    labels.json (or label_cols.json)/
 
 
 Dataset/
