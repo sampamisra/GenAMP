@@ -1,6 +1,6 @@
 GenAMP Pipeline
 End-to-end antimicrobial peptide (AMP) discovery pipeline:
-1. Stage 1: Generate candidate peptide sequences using a conditional VAE + reinforcement learning.
+1. Stage 1: Generate candidate peptide sequences using a VAE + reinforcement learning.
 2. Stage 2: Filter sequences with an AMP ensemble (ProtBERT/ESM2 models) and label each sequence as AMP or not. 
 3. Stage 3: For AMP-positive sequences, assign 22 antimicrobial / functional attributes.
    
