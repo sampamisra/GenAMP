@@ -7,7 +7,22 @@
 **2. Stage 2:** Filter sequences with an AMP ensemble (ProtBERT/ESM2 models) and label each sequence as AMP or not. 
 
 **3. Stage 3:** For AMP-positive sequences, assign 22 antimicrobial / functional attributes.
-   
+
+First, clone and navigate to the repository.
+
+
+	git clone https://github.com/sampamisra/GenAMP.git
+
+	cd GenAMP
+
+This process can take several minutes, depending on network speed.
+Create and activate a virtual environment using python 3.9 with virtualenv or cond
+
+	conda create -n genamp python=3.9
+
+    conda activate genamp
+
+
  ## **Environment / Requirements**
 - Python 3.8+
 - PyTorch with GPU support recommended
@@ -59,7 +74,7 @@
 
  ## **Full Workflow**
 
- Train AMP and MIC models using 
+ Train the AMP classification model: Runs using 
 
 **Step 1:** run **AmpGEncode.py** to generate sequences (Stage 1).
 
