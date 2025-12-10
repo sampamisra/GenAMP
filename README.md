@@ -23,45 +23,7 @@ Model can be downloaed from https://drive.google.com/drive/folders/1hdwsKo8oxES_
 
 
 	
-Model
 
-
-
-  Model_1ststage
-  
-  
-    VAE_ECD_RL_best.ckpt
-	
-    VAE_ECD_RL_encoder.pt
-	
-    VAE_ECD_RL_decoder.pt
-	
-    amp_classifier.pt
-	
-    mic_classifier_best.pt
-	
-  Model_2ndstage
-  
-  
-    best_Bert_cnn_bilstm_attn_fold6.pth
-	
-    best_esm2_cnn_bilstm_attn_fold6.pth
-	
-    cv_protbert_cnn_bilstm_attn_FT_fold6.pth
-	
-    cv_esm2_cnn_bilstm_attn_FT_HP_fold6.pth
-	
-  Model_3rdstage/
-
-  
-    specialists/fold_1/*.pth/
-	
-    specialists/fold_1/scaler.pkl/
-	
-    stacker_from_saved/fold_*/meta.pth/
-	
-    labels.json (or label_cols.json)/
-	
 
 
 Dataset
