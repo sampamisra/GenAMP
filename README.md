@@ -97,88 +97,8 @@ Dataset
 	
 
 
+Full Workflow
 
-Stage 1 — Sequence Generation (AmpGEncode.py) 
-
-Goal: generate antimicrobial-like peptide sequences using a VAE with encoder–conditioner–decoder (ECD) plus optional RL.
-
-- Encoder: biGRU → latent z
-  
-- Conditioner (ECD): transforms z to encourage controllable attributes
-  
-- Decoder: autoregressive GRU+LSTM that emits amino acids until EOS
-  
-- Optional RL (REINFORCE): rewards high AMP probability and low MIC using pretrained classifiers amp_classifier.pt and mic_classifier_best.pt
-  
-Outputs (saved in Result_1ststage/):
-
-- generated_denovo_ecd_ar.csv
-  
-  • de novo sequences sampled from the latent space
-  
-- generated_analogs_ecd_ar.csv
-- 
-  • analog sequences sampled around seed peptides
-  
-Each CSV row includes:
-
-- name
-  
-- sequence
-  
-- amp_prob (predicted AMP likelihood)
-  
-- mic_prob_low (predicted “low MIC”, i.e. potent)
-  
-- length, charge at pH 7.4, hydrophobicity, hydrophobic moment, isoelectric point
-  
-These CSVs are the inputs to Stage 2.
-
-Stage 2 — AMP Screening (amp_to_22func_pipeline.py, Stage-2)  
-Goal: decide which generated sequences are actually AMPs.
-Process:
-1. Load Result_1ststage/generated_denovo_ecd_ar.csv and generated_analogs_ecd_ar.csv
-2. Run an ensemble of four heads:
-   - token_protbert: ProtBERT embeddings → CNN–BiLSTM–Attention
-   - token_esm2: ESM2 embeddings → CNN–BiLSTM–Attention
-   - ft_protbert: finetuned ProtBERT+CNN+BiLSTM+Attention
-   - ft_esm2: finetuned ESM2+CNN+BiLSTM+Attention
-3. For each peptide, compute:
-   - ensemble_softscore = mean AMP probability
-   - ensemble_amp = 1/0 decision (default rule: soft score ≥ 0.5)
-Saved outputs (in Result_after_2ndstage/):
-- generated_denovo_ecd_ar_tagged.csv
-- generated_analogs_ecd_ar_tagged.csv
-Each tagged CSV:
-- copies original sequence rows
-- adds ensemble_softscore and ensemble_amp
-Additionally:
-- denovo_ensemble_counts.csv
-- analogs_ensemble_counts.csv
-These summarize how many sequences passed AMP filtering.
-
-
-
-5. Stage 3 — 22-Function Profiling (amp_to_22func_pipeline.py, Stage-3)  fileciteturn0file0
-Goal: For sequences predicted as AMPs (ensemble_amp == 1), assign 22 functional attributes (multi-label).
-Process:
-1. Take only rows where ensemble_amp == 1
-2. Build sequence feature embeddings:
-   - amino acid indices
-   - BLOSUM62
-   - PAAC
-   - one-hot
-3. Feed features into:
-   - 22 specialist binary MLPs, one per functional label
-   - optional meta-stacker models that learn co-occurrence structure
-4. For each function:
-   - <function>_prob (0–1)
-   - <function> (binary call: prob ≥ 0.5)
-Saved outputs (in Final_Result/):
-- generated_denovo_ecd_ar_tagged_amp_22func_pred.csv
-- generated_analogs_ecd_ar_tagged_amp_22func_pred.csv
-These CSVs contain only AMP-positive candidates and include predicted functional fingerprints across all 22 attributes.
-6. Full Workflow
 Step 1: run AmpGEncode.py to generate sequences (Stage 1).
 Outputs to Result_1ststage/
 Step 2: run amp_to_22func_pipeline.py (this runs Stage 2 and Stage 3 end-to-end).
