@@ -13,7 +13,7 @@ Environment / Requirements
 Trained weights:
 
 
-   •Stage 1 generative VAE + RL decoder
+  • Stage 1 generative VAE + RL decoder
    amp_classifier.pt and mic_classifier_best.pt (used for RL reward shaping and scoring)  
   • Stage 2 ensemble weights (Model/Model_2ndstage/*)  
   • Stage 3 specialists and stacker models (Model/Model_3rdstage/*)  
