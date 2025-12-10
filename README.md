@@ -100,8 +100,13 @@ Dataset
 Full Workflow
 
 Step 1: run AmpGEncode.py to generate sequences (Stage 1).
+
 Outputs to Result_1ststage/
+
+
 Step 2: run amp_to_22func_pipeline.py (this runs Stage 2 and Stage 3 end-to-end).
+
+
 - Loads Stage 1 CSVs
 - Runs Stage 2 AMP ensemble
 - Saves tagged CSVs + pass-rate summaries in Result_after_2ndstage/
