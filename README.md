@@ -1,32 +1,27 @@
-GenAMP Pipeline
-End-to-end antimicrobial peptide (AMP) discovery pipeline:
-1. Stage 1: Generate candidate peptide sequences using a VAE + reinforcement learning.
-2. Stage 2: Filter sequences with an AMP ensemble (ProtBERT/ESM2 models) and label each sequence as AMP or not. 
-3. Stage 3: For AMP-positive sequences, assign 22 antimicrobial / functional attributes.
+**GenAMP Pipeline**
+
+**End-to-end antimicrobial peptide (AMP) discovery pipeline:**
+
+**1. Stage 1:** Generate candidate peptide sequences using a VAE + reinforcement learning.
+**2. Stage 2:** Filter sequences with an AMP ensemble (ProtBERT/ESM2 models) and label each sequence as AMP or not. 
+**3. Stage 3:** For AMP-positive sequences, assign 22 antimicrobial / functional attributes.
    
-Environment / Requirements
+**Environment / Requirements**
 - Python 3.8+
 - PyTorch with GPU support recommended
 - transformers (HuggingFace)
 - pandas, numpy, scikit-learn, tqdm
-  
-Trained weights:
 
-
-  • Stage 1 generative VAE + RL decoder
-   amp_classifier.pt and mic_classifier_best.pt (used for RL reward shaping and scoring)  
-  • Stage 2 ensemble weights (Model/Model_2ndstage/*)  
-  • Stage 3 specialists and stacker models (Model/Model_3rdstage/*)  
   
 
-Model can be downloaed from https://drive.google.com/drive/folders/1hdwsKo8oxES_GdoURBQh6_0IVAsN0s9I?usp=sharing
+**Model** can be downloaed from https://drive.google.com/drive/folders/1hdwsKo8oxES_GdoURBQh6_0IVAsN0s9I?usp=sharing
 
 
 	
 
 
 
-Dataset
+**Dataset**
 
 
 
@@ -59,14 +54,14 @@ Dataset
 	
 
 
-Full Workflow
+**Full Workflow**
 
-Step 1: run AmpGEncode.py to generate sequences (Stage 1).
+**Step 1:** run AmpGEncode.py to generate sequences (Stage 1).
 
 Outputs to Result_1ststage/
 
 
-Step 2: run amp_to_22func_pipeline.py (this runs Stage 2 and Stage 3 end-to-end).
+**Step 2:** run amp_to_22func_pipeline.py (this runs Stage 2 and Stage 3 end-to-end).
 
 
 - Loads Stage 1 CSVs
