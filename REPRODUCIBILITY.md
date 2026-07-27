@@ -7,12 +7,14 @@ requests for a fully specified reproducibility package.
 ## 1. Source code version
 
 - Repository: https://github.com/sampamisra/GenAMP
-- Version used for the reported results: tag `v1.0.0`, commit `bd1b2a08de5ac292f18964142ae3d2b99d1724f2`
+- Version used for the reported results: the commit tagged `v1.0.0` on the
+  `main` branch (see https://github.com/sampamisra/GenAMP/releases/tag/v1.0.0
+  for the exact commit hash).
 - Archived, citable snapshot (Zenodo or equivalent): `<FILL IN — DOI, e.g. 10.5281/zenodo.XXXXXXX>`
 
-> Once `v1.0.0` is pushed to GitHub (`git push origin master --tags`), create
-> a GitHub Release from that tag and connect the repo to Zenodo (or upload
-> the release archive to Zenodo manually) to mint a DOI. Cite the DOI, not
+> Once `v1.0.0` is pushed to GitHub, create a GitHub Release from that tag
+> and connect the repo to Zenodo (or upload the release archive to Zenodo
+> manually) to mint a DOI. Cite the DOI, not
 > just the GitHub URL, in the camera-ready manuscript, since GitHub content
 > can change or be deleted after publication.
 
