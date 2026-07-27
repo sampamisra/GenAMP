@@ -1,0 +1,13 @@
+# Minimum versions inferred from the APIs used in this repo (EsmModel support,
+# StratifiedKFold, matthews_corrcoef, etc.). Replace with exact pins from the
+# environment actually used for the reported results, e.g.:
+#   pip freeze > requirements.txt
+# run inside the `genamp` conda env before archiving/tagging the release
+# (see REPRODUCIBILITY.md, section 2).
+torch>=1.12
+transformers>=4.20
+scikit-learn>=1.0
+pandas>=1.3
+numpy>=1.21
+tqdm>=4.60
+matplotlib>=3.4

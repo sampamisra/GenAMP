@@ -748,6 +748,16 @@ def score_sequences(scorer, seqs):
         probs.append(p)
     return np.concatenate(probs, axis=0) if len(probs) else np.full(len(seqs), np.nan)
 
+def compute_reward_scores(amp_probs, mic_probs):
+    amp = np.nan_to_num(np.asarray(amp_probs, dtype=np.float32), nan=0.0)
+    mic = np.nan_to_num(np.asarray(mic_probs, dtype=np.float32), nan=0.0)
+    reward = RL_W_AMP * amp
+    if MIC_POSITIVE_IS_LOW:
+        reward = reward + RL_W_MIC * mic
+    else:
+        reward = reward - RL_W_MIC * mic
+    return np.clip(reward, -1.0, 1.0)
+
 def save_fasta(path, names, seqs, extra_headers=None):
     with open(path, "w") as f:
         for i,(n,s) in enumerate(zip(names, seqs)):
@@ -788,6 +798,8 @@ def main():
     df_dn = pd.DataFrame({
         "name": [f"denovo_{i:05d}" for i, _ in enumerate(dn_seqs)],
         "sequence": dn_seqs,
+        "generation_mode": "de_novo",
+        "reward_score": compute_reward_scores(dn_amp, dn_mic),
         "amp_prob": dn_amp,              # probability of HIGH AMP
         "mic_prob_low": dn_mic,          # probability of LOW MIC (good)
     })
@@ -825,6 +837,8 @@ def main():
         "name": [f"analog_{i:05d}" for i, _ in enumerate(an_seqs)],
         "seed": an_src,
         "sequence": an_seqs,
+        "generation_mode": "analog",
+        "reward_score": compute_reward_scores(an_amp, an_mic),
         "amp_prob": an_amp,
         "mic_prob_low": an_mic,
     })

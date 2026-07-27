@@ -24,15 +24,22 @@ Create and activate a virtual environment using python 3.9 with virtualenv or co
 
 
  ## **Environment / Requirements**
-- Python 3.8+
+- Python 3.9 (tested; 3.8–3.10 expected to work)
 - PyTorch with GPU support recommended
 - transformers (HuggingFace)
 - pandas, numpy, scikit-learn, tqdm
 
-  
+Install pinned dependencies with:
+
+    pip install -r requirements.txt
+
+For the exact code version, seeds, trained-model checkpoints, and the
+mapping from scripts/output files to reported tables, see
+[REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
  ## **Model** 
- It can be downloaed from https://drive.google.com/drive/folders/1hdwsKo8oxES_GdoURBQh6_0IVAsN0s9I?usp=sharing
+ Trained checkpoints can be downloaded from https://drive.google.com/drive/folders/1hdwsKo8oxES_GdoURBQh6_0IVAsN0s9I?usp=sharing
+ (expected filenames and target directories are listed in [REPRODUCIBILITY.md](REPRODUCIBILITY.md#4-trained-model-availability))
 
 
 	
@@ -89,3 +96,13 @@ Outputs to Result_1ststage/
 - Saves tagged CSVs + pass-rate summaries in Result_after_2ndstage/
 - Runs Stage 3 only on sequences where ensemble_amp == 1
 - Saves 22-function predictions in Final_Result/
+
+**Step 3:** run **export_supplementary_generated_peptides.py** to create the reviewer-facing supplementary generated-peptide table.
+
+    python export_supplementary_generated_peptides.py
+
+On Windows systems without Python on PATH, the equivalent PowerShell builder can be used:
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\build_supplementary_generated_peptides.ps1
+
+This writes **Supplementary_Data_Generated_Peptides.csv**, including sequence, generation mode, reward score, AMP probability, MIC-class probability, ensemble screening score, ML-A2P probabilities, hemolytic/cytotoxic predictions when available, and nearest-neighbor identity to the training data.
