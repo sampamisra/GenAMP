@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/1083954130.svg)](https://doi.org/10.5281/zenodo.21696804)
  # **GenAMP Pipeline**
 
  ## **End-to-end antimicrobial peptide (AMP) discovery pipeline:**
