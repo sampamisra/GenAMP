@@ -8,15 +8,13 @@ requests for a fully specified reproducibility package.
 
 - Repository: https://github.com/sampamisra/GenAMP
 - Version used for the reported results: the commit tagged `v1.0.0` on the
-  `main` branch (see https://github.com/sampamisra/GenAMP/releases/tag/v1.0.0
-  for the exact commit hash).
-- Archived, citable snapshot (Zenodo or equivalent): `<FILL IN — DOI, e.g. 10.5281/zenodo.XXXXXXX>`
-
-> Once `v1.0.0` is pushed to GitHub, create a GitHub Release from that tag
-> and connect the repo to Zenodo (or upload the release archive to Zenodo
-> manually) to mint a DOI. Cite the DOI, not
-> just the GitHub URL, in the camera-ready manuscript, since GitHub content
-> can change or be deleted after publication.
+  `main` branch, commit `8b1590534abe32deb2fa85aeb51329d91f191992` (also
+  re-verified under tag `v1.0.2`, identical code).
+- Archived, citable snapshot (Zenodo): **https://doi.org/10.5281/zenodo.21696805**
+  — this is the version-specific DOI for the archived v1.0.0 release. The
+  concept DOI `10.5281/zenodo.21696804` always resolves to whichever version
+  is archived most recently and should not be used to cite this specific
+  result set.
 
 ## 2. Environment and dependencies
 
